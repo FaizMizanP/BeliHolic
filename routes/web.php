@@ -21,9 +21,16 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/edit-profile', function() {
+    $users = Auth::user();
+    
     return view('auth.edit-profile');
 
 })->name("edit-profile");
+
+Route::get('/detail-product', function() {
+    return view('detail-product');
+
+})->name("detail-product");
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
