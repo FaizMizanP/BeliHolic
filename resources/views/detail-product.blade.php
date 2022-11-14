@@ -1,4 +1,8 @@
+@extends('layouts.app')
+
+@section('content')
 <!DOCTYPE html>
+
 <html>
   <head>
     <meta charset="utf-8">
@@ -17,9 +21,9 @@
 
       <!-- Left Column / Gambar Produk -->
       <div class="left-column">
-        <img data-image="yeezy" src="images/yeezy.png" alt="">
-        <img data-image="orange" src="images/orange.png" alt="">
-        <img data-image="peach" class="active" src="images/peach.png" alt="">
+        <img data-image="yeezy" src="{{asset('images/yeezy.png')}}" alt="">
+        <img data-image="orange" src="{{asset('images/orange.png')}}" alt="">
+        <img data-image="peach" class="active" src="{{asset('images/peach.png')}}" alt="">
       </div>
 
 
@@ -84,3 +88,4 @@
     <script src="{{ asset('detail-product/script.js') }}" charset="utf-8"></script>
   </body>
 </html>
+@endsection

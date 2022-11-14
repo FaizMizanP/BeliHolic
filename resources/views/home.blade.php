@@ -42,7 +42,7 @@
                             <div id="emailHelp" class="form-text">Masukkan Berat Barang</div>
                         </div>
                         <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Deskripsi Barang</label>
+                            <label for="exampleInputEmail1" class="form-label">Deskripsi Barang</label>
                             <div class="form-floating">
                                 <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
                                 <label for="floatingTextarea">Masukkan Deskripsi Barang</label>
@@ -86,7 +86,10 @@
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a href="/detail-products" class="btn btn-primary">Go somewhere</a>
+                                    <a href="" class="btn btn-outline-primary"><i class="fa-solid fa-cart-plus"></i></a>
+                                </div>
                             </div>
                         </div>
                         <div class="card m-2" style="width: 18rem;">
@@ -94,7 +97,10 @@
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a href="/detail-products" class="btn btn-primary">Go somewhere</a>
+                                    <a href="" class="btn btn-outline-primary"><i class="fa-solid fa-cart-plus"></i></a>
+                                </div>
                             </div>
                         </div>
                         <div class="card m-2" style="width: 18rem;">
@@ -102,7 +108,10 @@
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a href="/detail-products" class="btn btn-primary">Go somewhere</a>
+                                    <a href="" class="btn btn-outline-primary"><i class="fa-solid fa-cart-plus"></i></a>
+                                </div>
                             </div>
                         </div>
                         <div class="card m-2" style="width: 18rem;">
@@ -110,7 +119,10 @@
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a href="/detail-products" class="btn btn-primary">Go somewhere</a>
+                                    <a href="" class="btn btn-outline-primary"><i class="fa-solid fa-cart-plus"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -27,10 +27,14 @@ Route::get('/edit-profile', function() {
 
 })->name("edit-profile");
 
-Route::get('/detail-product', function() {
+Route::get('/detail-products', function() {
     return view('detail-product');
 
 })->name("detail-product");
+
+Route::get('/cart', function() {
+    return view('detail-cart');
+})->name("cart");
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
