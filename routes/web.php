@@ -38,3 +38,5 @@ Route::get('/cart', function() {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::post('/add-barang', [App\Http\Controllers\BarangController::class, 'create'])->name('add-barang');
+
