@@ -2,11 +2,12 @@
 
 @section('content')
 <div class="container">
+    <!-- <img src="{{ url('/storage/posts_image/150397804_3619959704767609_2597533447591345405_n1671474527.jpg') }}" alt="" title=""> -->
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="POST" action="{{ route('add-barang') }}">
+                <form method="POST" action="{{ route('add-barang') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Input Barang</h5>
@@ -51,6 +52,10 @@
                             </select>
                         </div>
                         <div class="mb-3">
+                            <label for="image" class="form-label">Masukkan foto barang</label>
+                            <input class="form-control" type="file" id="image" name="image">
+                        </div>
+                        <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Deskripsi Barang</label>
                             <div class="form-floating">
                                 <textarea id="deskripsi_barang" name="deskripsi_barang" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
@@ -91,50 +96,20 @@
 
                     {{ __('Selamat Datang!') }}
                     <div class="d-flex flex-wrap">
+                        @foreach($barang as $item)
                         <div class="card m-2" style="width: 18rem;">
-                            <img class="card-img-top" src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTSwD1-34NU9tqxMKInv7CEpO_711qXM7z_tLW2m4rr2SIsUInAorNk0favd0LstVKLEIWQpRBELb-r_qHNGjr6WPhhY4hzAUj2lU-VFmCOTAv4iuEI5P_92EA&usqp=CAE" alt="Card image cap">
+                            <img class="card-img-top" src="{{ url('/storage/posts_image/' .$item -> image_url) }}" alt="Card image cap">
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <h5 class="card-title">{{$item -> nama_barang}}</h5>
+                                <p class="card-text">{{$item -> deskripsi_barang}}</p>
+                                <p class="card-text">{{$item -> kondisi_barang}}</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <a href="/detail-products" class="btn btn-primary">Go somewhere</a>
+                                    <a href="/detail-products" class="btn btn-primary">Beli</a>
                                     <a href="" class="btn btn-outline-primary"><i class="fa-solid fa-cart-plus"></i></a>
                                 </div>
                             </div>
                         </div>
-                        <div class="card m-2" style="width: 18rem;">
-                            <img class="card-img-top" src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTSwD1-34NU9tqxMKInv7CEpO_711qXM7z_tLW2m4rr2SIsUInAorNk0favd0LstVKLEIWQpRBELb-r_qHNGjr6WPhhY4hzAUj2lU-VFmCOTAv4iuEI5P_92EA&usqp=CAE" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="/detail-products" class="btn btn-primary">Go somewhere</a>
-                                    <a href="" class="btn btn-outline-primary"><i class="fa-solid fa-cart-plus"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card m-2" style="width: 18rem;">
-                            <img class="card-img-top" src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTSwD1-34NU9tqxMKInv7CEpO_711qXM7z_tLW2m4rr2SIsUInAorNk0favd0LstVKLEIWQpRBELb-r_qHNGjr6WPhhY4hzAUj2lU-VFmCOTAv4iuEI5P_92EA&usqp=CAE" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="/detail-products" class="btn btn-primary">Go somewhere</a>
-                                    <a href="" class="btn btn-outline-primary"><i class="fa-solid fa-cart-plus"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card m-2" style="width: 18rem;">
-                            <img class="card-img-top" src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTSwD1-34NU9tqxMKInv7CEpO_711qXM7z_tLW2m4rr2SIsUInAorNk0favd0LstVKLEIWQpRBELb-r_qHNGjr6WPhhY4hzAUj2lU-VFmCOTAv4iuEI5P_92EA&usqp=CAE" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="/detail-products" class="btn btn-primary">Go somewhere</a>
-                                    <a href="" class="btn btn-outline-primary"><i class="fa-solid fa-cart-plus"></i></a>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

@@ -17,6 +17,7 @@ class Barang extends Model
         'stock',
         'kondisi_barang',
         'deskripsi_barang',
+        'image_url',
         'id_penjual'
     ];
 }
