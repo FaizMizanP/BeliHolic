@@ -66,28 +66,33 @@
                     <h4>Nama Toko</h4>
                     <p>Domisili Toko</p>
                 </div>
-                <div class="d-flex justify-content-start align-items-start" style="column-gap: 16px">
-                    <div>
-                        <img width="150px" src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTSwD1-34NU9tqxMKInv7CEpO_711qXM7z_tLW2m4rr2SIsUInAorNk0favd0LstVKLEIWQpRBELb-r_qHNGjr6WPhhY4hzAUj2lU-VFmCOTAv4iuEI5P_92EA&usqp=CAE" alt="Card image cap">
-                    </div>
-                    <div class="w-100">
+                <form method="POST" action="{{ route('delete-cart') }}">
+                    @csrf
+                    @method('DELETE')
+                    @foreach ($listCart as $item)
+                    <div class="d-flex justify-content-start align-items-start mt-4" style="column-gap: 16px">
                         <div>
-                            <h4 class="mb-3">Nama Product</h4>
-                            <p>Rp. XXX. XXX</p>
+                            <img width="150px" src="{{ url('/storage/posts_image/' .$item -> image_url) }}" alt="Card image cap">
                         </div>
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="w-100">
                             <div>
-                                <input class="form-control form-control-sm" type="text" placeholder="Masukkan Jumlah Barang" aria-label=".form-control-sm example">
+                                <h4 class="mb-3">{{$item -> nama_barang}}</h4>
+                                <p>Rp. {{$item -> harga_satuan}}</p>
                             </div>
-                            <div class="d-flex justify-content-start align-items-start" style="column-gap: 16px">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Beli</button>
-                                <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <input class="form-control form-control-sm" type="text" placeholder="Masukkan Jumlah Barang" aria-label=".form-control-sm example">
+                                </div>
+                                <div class="d-flex justify-content-start align-items-start" style="column-gap: 16px">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Beli</button>
+                                    <button type="submit" name="id" value="{{$item -> id}}" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <hr />
-
+                    <hr />
+                    @endforeach
+                </form>
             </div>
         </div>
         <div class="col-4">

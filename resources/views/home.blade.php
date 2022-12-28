@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+    }
+</style>
 <div class="container">
     <!-- <img src="{{ url('/storage/posts_image/150397804_3619959704767609_2597533447591345405_n1671474527.jpg') }}" alt="" title=""> -->
     <!-- Modal -->
@@ -95,22 +101,25 @@
                     @endif
 
                     {{ __('Selamat Datang!') }}
-                    <div class="d-flex flex-wrap">
-                        @foreach($barang as $item)
-                        <div class="card m-2" style="width: 18rem;">
-                            <img class="card-img-top" src="{{ url('/storage/posts_image/' .$item -> image_url) }}" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">{{$item -> nama_barang}}</h5>
-                                <p class="card-text">{{$item -> deskripsi_barang}}</p>
-                                <p class="card-text">{{$item -> kondisi_barang}}</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="/detail-products" class="btn btn-primary">Beli</a>
-                                    <a href="" class="btn btn-outline-primary"><i class="fa-solid fa-cart-plus"></i></a>
+                    <form method="POST" action="{{ route('add-cart') }}">
+                        @csrf
+                        <div class="d-flex flex-wrap">
+                            @foreach($barang as $item)
+                            <div class="card m-2" style="width: 18rem;">
+                                <img class="card-img-top" src="{{ url('/storage/posts_image/' .$item -> image_url) }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{$item -> nama_barang}}</h5>
+                                    <p class="card-text">{{$item -> deskripsi_barang}}</p>
+                                    <p class="card-text">{{$item -> kondisi_barang}}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="/detail-products" class="btn btn-primary">Beli</a>
+                                        <button type="submit" name="id_barang" class="btn btn-outline-primary" value="{{$item -> id}}"><i class="fa-solid fa-cart-plus"></i></button>
+                                    </div>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
-                        @endforeach
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

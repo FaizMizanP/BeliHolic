@@ -32,11 +32,12 @@ Route::get('/detail-products', function() {
 
 })->name("detail-product");
 
-Route::get('/cart', function() {
-    return view('detail-cart');
-})->name("cart");
+Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::post('/add-barang', [App\Http\Controllers\BarangController::class, 'create'])->name('add-barang');
 
+Route::post('/add-cart', [App\Http\Controllers\CartController::class, 'create'])->name('add-cart' );
+
+Route::delete('/cart', [App\Http\Controllers\CartController::class, 'destroy'])->name('delete-cart');
