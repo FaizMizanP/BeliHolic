@@ -41,3 +41,7 @@ Route::post('/add-barang', [App\Http\Controllers\BarangController::class, 'creat
 Route::post('/add-cart', [App\Http\Controllers\CartController::class, 'create'])->name('add-cart' );
 
 Route::delete('/cart', [App\Http\Controllers\CartController::class, 'destroy'])->name('delete-cart');
+
+Route::post('/pembelian', [App\Http\Controllers\PembelianController::class, 'create'])->name('pembelian');
+
+//Route::get('/test', [App\Http\Controllers\PembelianController::class, 'detailPembelian']);

@@ -9,51 +9,64 @@
                     <h5 class="modal-title" id="exampleModalLabel">Checkout</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+
                 <div class="modal-body">
-                    <h5 class="mb-2">Nama Product</h4>
-                        <p>Rp. XXX. XXX</p>
+                    <form method="POST" action="{{route('pembelian') }}">
+                        @csrf
+                        <input type="hidden" name="id_barang" value="0">
+                        <input type="hidden" name="total_pembayaran" value="0">
+                        <input type="hidden" name="harga_barang" value="0">
+                        <input type="hidden" name="jumlah_barang" value="0">
+                        <input type="hidden" name="total_harga" value="0">
+                        <h5 class="mb-2" id="nama_product">Nama Product</h5>
+                        <p>Rp. <span id="harga_product"></span></p>
+                        <p>Jumlah Barang : <span id="jumlah_product"></span></p>
                         <hr>
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Alamat Penerima</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea name="alamat_penerima" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Jasa Pengiriman</label>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Pilih Ekspedisi</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select id="jasa_pengiriman" class="form-select" aria-label="Default select example">
+                                <option selected disabled>Pilih Ekspedisi</option>
+                                @foreach($jasaPengiriman as $item)
+                                <option value="{{$item -> id}}">{{$item -> nama_jasa}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Tipe Pengiriman</label>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Pilih Ekspedisi</option>
-                                <option value="1">Regular</option>
-                                <option value="2">Same Day</option>
+                            <select name="id_tipe_jasa_pengiriman" id="tipe_jasa_pengiriman" class="form-select" aria-label="Default select example">
+                                <option selected disabled>Pilih Tipe Pengiriman</option>
+
                             </select>
                         </div>
                         <hr>
                         <h5><b>Total</b></h5>
-                        <p><b>Rp. XXX. XXX</b></p>
+                        <p><b>Rp. <span id="harga_total"></span></b></p>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Metode Pembayaran</label>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Pilih Pembayaran</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select name="metode_pembayaran" id="metode_pembayaran" class="form-select" aria-label="Default select example">
+                                <option selected disabled>Pilih Metode Pembayaran</option>
+                                <option value="COD">COD</option>
+                                <option value="Transfer">Transfer</option>
                             </select>
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Masukkan No Rekening</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div class="mb-3 metode-transfer">
+                            <label for="exampleInputEmail1" class="form-label">Masukkan Nama Bank</label>
+                            <input name="nama_bank" id="nama_bank" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Checkout</button>
+                        <div class="mb-3 metode-transfer">
+                            <label for="exampleInputEmail1" class="form-label">Masukkan No Rekening</label>
+                            <input name="nomor_rekening" id="nomor_rekening" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3 d-flex align-items-end justify-content-end" style="gap: 16px;">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Checkout</button>
+                        </div>
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -81,10 +94,10 @@
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <input class="form-control form-control-sm" type="text" placeholder="Masukkan Jumlah Barang" aria-label=".form-control-sm example">
+                                    <input id="jumlah-{{$item->id_barangs}}" class="form-control form-control-sm" type="text" placeholder="Masukkan Jumlah Barang" aria-label=".form-control-sm example">
                                 </div>
                                 <div class="d-flex justify-content-start align-items-start" style="column-gap: 16px">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Beli</button>
+                                    <button value="{{$item->id_barangs}}" type="button" class="btn btn-primary buttonBeli" data-bs-toggle="modal" data-bs-target="#exampleModal">Beli</button>
                                     <button type="submit" name="id" value="{{$item -> id}}" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                                 </div>
                             </div>
@@ -95,10 +108,64 @@
                 </form>
             </div>
         </div>
-        <div class="col-4">
-            <br>
-            <button type="button" class="btn btn-success btn-lg">Checkout Semua Barang</button>
-        </div>
     </div>
 </div>
+<script>
+    var harga_total = 0
+    $('.buttonBeli').click(function() {
+        var value = $(this).attr('value')
+        $.ajax({
+            url: "{!! url('/') !!}" + "/api/get-barang/" + value,
+            type: "GET",
+            success: function(response) {
+                console.log(response)
+                $('#nama_product').text(response.data.nama_barang);
+                $('#harga_product').text(response.data.harga_satuan);
+                $('#jumlah_product').text($('#jumlah-' + response.data.id).val());
+                harga_total = response.data.harga_satuan * $('#jumlah-' + response.data.id).val()
+                $('#harga_total').text(harga_total)
+                $('input[name="id_barang"]').val(response.data.id);
+                $('input[name="total_pembayaran"]').val(harga_total)
+                $('input[name="harga_barang"]').val(response.data.harga_satuan)
+                $('input[name="jumlah_barang"]').val($('#jumlah-' + response.data.id).val())
+                $('input[name="total_harga"]').val(response.data.harga_satuan * $('#jumlah-' + response.data.id).val())
+            }
+        })
+    });
+
+    $('#jasa_pengiriman').on('change', function() {
+        var id_jasa_pengiriman = this.value
+        $.ajax({
+            url: "{!! url('/') !!}" + "/api/get-tipe-jasa/" + id_jasa_pengiriman,
+            type: "GET",
+            success: function(response) {
+                console.log(response)
+                response.data.map((item) => {
+                    $('#tipe_jasa_pengiriman').append($('<option>', {
+                        value: item.id,
+                        text: item.nama_tipe,
+                        harga: item.harga_tipe
+                    }));
+                })
+
+            }
+        })
+    });
+
+    $('#tipe_jasa_pengiriman').on('change', function() {
+        var element = $(this).find('option:selected');
+        var harga = element.attr('harga')
+        var hargaFinal = Number(harga) + harga_total
+        $('#harga_total').text(hargaFinal)
+        $('input[name="total_pembayaran"]').val(hargaFinal)
+    });
+
+    $('#metode_pembayaran').on('change', function() {
+        if (this.value == 'COD') {
+            $('.metode-transfer').hide();
+        } else {
+            $('.metode-transfer').show();
+        }
+    });
+</script>
 @endsection

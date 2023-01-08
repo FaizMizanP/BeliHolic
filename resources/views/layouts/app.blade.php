@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://kit.fontawesome.com/909e55f669.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ URL::asset('jquery-3.6.3.min.js') }}"></script>
 
 
     <!-- CSRF Token -->

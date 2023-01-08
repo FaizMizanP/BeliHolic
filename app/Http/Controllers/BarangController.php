@@ -29,4 +29,15 @@ class BarangController extends Controller
 
     }
 
+    public function getDetailBarang(Request $request, $id){
+        $barang = Barang::find($id);
+        return response()->json([
+            'success' => true,
+            'message' => 'Get Data Barang Success',
+            'response_code' => 200,
+            'data' => $barang
+        ], 200);
+
+    }
+
 }
